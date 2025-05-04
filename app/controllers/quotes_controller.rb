@@ -12,6 +12,9 @@ class QuotesController < ApplicationController
     @quote = Quote.new
   end
 
+  def edit
+  end
+
   def create
     @quote = Quote.new quote_params
 
@@ -20,9 +23,6 @@ class QuotesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
   end
 
   def update
@@ -34,8 +34,8 @@ class QuotesController < ApplicationController
   end
 
   def destroy
-    @quote.destroy
-    redirect_to quotes_path, notice: 'Quote was successfully destroyed.'
+    @quote.destroy!
+    redirect_to quotes_path, status: :see_other, notice: 'Quote was successfully destroyed.'
   end
 
   private
