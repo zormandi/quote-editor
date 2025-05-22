@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class QuotesTest < ApplicationSystemTestCase
   setup do
+    login_as users(:manager)
     @quote = quotes(:first)
   end
 
