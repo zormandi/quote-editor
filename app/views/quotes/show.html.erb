@@ -7,8 +7,15 @@
       <%= @quote.name %>
     </h1>
 
-    <%= link_to "New date", new_quote_line_item_date_path(@quote), class: "btn btn--primary" %>
+    <%= link_to "New date",
+                new_quote_line_item_date_path(@quote),
+                data: { turbo_frame: "new_line_item_date" },
+                class: "btn btn--primary" %>
   </div>
 
-  <%= render @line_item_dates, quote: @quote %>
+  <%= turbo_frame_tag "new_line_item_date" %>
+
+  <%= turbo_frame_tag "line_item_dates" do %>
+    <%= render @line_item_dates, quote: @quote %>
+  <% end %>
 </main>

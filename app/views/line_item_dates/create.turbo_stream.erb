@@ -1,0 +1,9 @@
+<%= turbo_stream.update "new_line_item_date", "" %>
+
+<% if (@previous_date = @line_item_date.previous_date).nil? %>
+  <%= turbo_stream.prepend "line_item_dates", partial: "line_item_dates/line_item_date", locals: { quote: @quote, line_item_date: @line_item_date } %>
+<% else %>
+  <%= turbo_stream.after @previous_date, partial: "line_item_dates/line_item_date", locals: { quote: @quote, line_item_date: @line_item_date } %>
+<% end %>
+
+<%= render_turbo_stream_flash_messages %>
